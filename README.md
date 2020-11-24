@@ -6,7 +6,7 @@
 
 | Tool | Description |
 | ------ | ------ |
-| Languages | C# / CSS / Razor / SQL|
+| Languages | C# / CSS / SQL|
 | IDE | Visual Studio 2019 |
 | Framework | ASP. NET MVC  |
 | API | SportsData. IO |
