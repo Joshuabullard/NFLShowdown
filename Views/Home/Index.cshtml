@@ -1,0 +1,67 @@
+﻿<head>
+    <style>
+        .homeLogo {
+            width: 400px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .vsLogo {
+            height: 100px;
+            display: block;
+        }
+
+
+        .home-container {
+            width: 100%;
+            margin-top: 75px;
+            margin-bottom: 60px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
+            background-color: #d4d4d4;
+        }
+
+    </style>
+</head>
+
+
+@{
+    ViewBag.Title = "NFL Showdown";
+}
+
+<div class="home-container">
+    <img class="homeLogo" src="~/images/Showdown.png" alt="NFL_SHOWDOWN_LOGO" />
+
+</div>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="vsLogo" src="~/images/homeVS.png" alt="VS_LOGO" />
+            <h2>NFL Pick'em</h2>
+            <p>
+                Pick games. Get braging rights. <br />
+                Each pick is available until game kicks off.<br />
+                Current week is updated after last game is completed. 
+            </p>
+            <p><a class="btn btn-default" @Html.ActionLink("Make Selections »", "pickem", "Home") </a></p>
+        </div>
+        <div class="col-md-4">
+            <img class="vsLogo" src="~/images/homeHistory.png" alt="HISTORY_LOGO" />
+            <h2>Picks History</h2>
+            <p>
+                See previous weeks game picks.
+            </p>
+            <p><a class="btn btn-default" @Html.ActionLink("Picks History »", "PickHistory", "Home") </a></p>
+        </div>
+        <div class="col-md-4">
+            <img class="vsLogo" src="~/images/homeLeader.png" alt="LEADERBOARD_LOGO" />
+            <h2>Leaderboard</h2>
+            <p>
+                See where you match up on the Pick'Em Leaderboard.
+                Wins/Losses are added after the completion of each game.
+            </p>
+            <p><a class="btn btn-default" @Html.ActionLink("Leaderboard »", "Leaderboard", "Home") </a></p>
+        </div>
+    </div>
+

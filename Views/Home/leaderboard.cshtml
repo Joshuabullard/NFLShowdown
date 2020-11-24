@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataLibrary.Models.NFLLeaderboard>
+
+@{
+    ViewBag.Title = "leaderboard";
+}
+
+<h2>leaderboard</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("User", "Leaderboard", new { sortOrder = ViewBag.UserSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Wins", "Leaderboard", new { sortOrder = ViewBag.WinsSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("losses", "Leaderboard", new { sortOrder = ViewBag.LossesSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("W/L Ratio", "Leaderboard", new { sortOrder = ViewBag.RatioSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Losses)
+            </td>
+            <td>
+                @item.Ratio.ToString(".###")
+            </td>
+        </tr>
+    }
+
+</table>

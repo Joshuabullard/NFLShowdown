@@ -1,0 +1,305 @@
+﻿@model  NFLShowdown.Models.PickemGames
+
+
+@{
+    ViewBag.Title = "Pickem";
+}
+
+<head>
+    <style>
+        .homeTeamInfo {
+            float: left;
+            margin-left: 100px;
+            margin-top: 20px;
+        }
+
+        .awayteamInfo {
+            margin-right: 100px;
+            float: left;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .teamTxt {
+            font-family: Calibri;
+            font-weight: 800;
+            font-size: 20px;
+            text-align: center;
+            padding-top: 10px;
+            color: #a48714;
+        }
+
+        .atSym {
+            font-family: Calibri;
+            font-weight: 800;
+            font-size: 20px;
+            color: #848484;
+            margin-top: 75px;
+            float: left;
+        }
+
+        .teamLogo {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .row {
+            width: 900px;
+            padding-bottom: 25px;
+            padding-top: 25px;
+            border-bottom: 6px groove rgba(170,170,170,0.35);
+            border-radius: 10px;
+        }
+
+        .GameHasStarted {
+            opacity: 0.6;
+        }
+
+        .gameInfo {
+            float: left;
+            margin-top: 20px;
+            margin-left: 130px;
+            margin-bottom: 80px;
+            font-family: Calibri;
+            font-weight: 400;
+            font-size: 14px;
+            color: #a48714;
+        }
+
+        .weekHeader {
+            padding-top: 50px;
+            width: 900px;
+            margin-left: -15px;
+            padding-bottom: 50px;
+            background-image: linear-gradient(to bottom right, #ffcc03, #a48714);
+        }
+
+        .weekTxt {
+            text-align: center;
+            font-weight: 800;
+            font-family: Calibri;
+            font-size: 40px;
+            color: white;
+        }
+
+        .gameTime {
+            font-family: Calibri;
+            font-weight: 800;
+            font-size: 18px;
+            word-spacing: 6px;
+            color: #848484;
+        }
+
+        .btnSubmit {
+            background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            background-color: #ffec64;
+            border-radius: 12px;
+            display: inline-block;
+            cursor: pointer;
+            font-family: Calibri;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 11px 48px;
+            margin-left: 325px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .btnSubmit:hover {
+            background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            background-color: #ffab23;
+        }
+
+    </style>
+</head>
+
+<br>
+<br>
+<div class="weekHeader">
+    <p class="weekTxt"> Week @Model.Week Picks</p>
+</div>
+
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    var indexGame = 1;
+
+
+    foreach (var game in Model._Games)
+    {
+        bool homePicked = false;
+        bool awayPicked = false;
+
+        string homeStr = "";
+        string awayStr = "";
+
+        switch (game.HomeTeam)
+        {
+            case "ARI": homeStr = "Cardinals"; break;
+            case "ATL": homeStr = "Falcons"; break;
+            case "BAL": homeStr = "Ravens"; break;
+            case "BUF": homeStr = "Bills"; break;
+            case "CAR": homeStr = "Panthers"; break;
+            case "CHI": homeStr = "Bears"; break;
+            case "CIN": homeStr = "Bengals"; break;
+            case "CLE": homeStr = "Browns"; break;
+            case "DAL": homeStr = "Cowboys"; break;
+            case "DEN": homeStr = "Broncos"; break;
+            case "DET": homeStr = "Lions"; break;
+            case "GB": homeStr = "Packers"; break;
+            case "HOU": homeStr = "Texans"; break;
+            case "IND": homeStr = "Colts"; break;
+            case "JAX": homeStr = "Jaguars"; break;
+            case "KC": homeStr = "Cheifs"; break;
+            case "LAC": homeStr = "Chargers"; break;
+            case "LAR": homeStr = "Rams"; break;
+            case "LV": homeStr = "Raiders"; break;
+            case "MIA": homeStr = "Dolphins"; break;
+            case "MIN": homeStr = "Vikings"; break;
+            case "NE": homeStr = "Patriots"; break;
+            case "NO": homeStr = "Saints"; break;
+            case "NYG": homeStr = "Giants"; break;
+            case "NYJ": homeStr = "Jets"; break;
+            case "PHI": homeStr = "Eagles"; break;
+            case "PIT": homeStr = "Steelers"; break;
+            case "SEA": homeStr = "Seahawks"; break;
+            case "SF": homeStr = "49ers"; break;
+            case "TB": homeStr = "Buccaneers"; break;
+            case "TEN": homeStr = "Titans"; break;
+            case "WAS": homeStr = "Football Team"; break;
+        }
+
+        switch (game.AwayTeam)
+        {
+            case "ARI": awayStr = "Cardinals"; break;
+            case "ATL": awayStr = "Falcons"; break;
+            case "BAL": awayStr = "Ravens"; break;
+            case "BUF": awayStr = "Bills"; break;
+            case "CAR": awayStr = "Panthers"; break;
+            case "CHI": awayStr = "Bears"; break;
+            case "CIN": awayStr = "Bengals"; break;
+            case "CLE": awayStr = "Browns"; break;
+            case "DAL": awayStr = "Cowboys"; break;
+            case "DEN": awayStr = "Broncos"; break;
+            case "DET": awayStr = "Lions"; break;
+            case "GB": awayStr = "Packers"; break;
+            case "HOU": awayStr = "Texans"; break;
+            case "IND": awayStr = "Colts"; break;
+            case "JAX": awayStr = "Jaguars"; break;
+            case "KC": awayStr = "Cheifs"; break;
+            case "LAC": awayStr = "Chargers"; break;
+            case "LAR": awayStr = "Rams"; break;
+            case "LV": awayStr = "Raiders"; break;
+            case "MIA": awayStr = "Dolphins"; break;
+            case "MIN": awayStr = "Vikings"; break;
+            case "NE": awayStr = "Patriots"; break;
+            case "NO": awayStr = "Saints"; break;
+            case "NYG": awayStr = "Giants"; break;
+            case "NYJ": awayStr = "Jets"; break;
+            case "PHI": awayStr = "Eagles"; break;
+            case "PIT": awayStr = "Steelers"; break;
+            case "SEA": awayStr = "Seahawks"; break;
+            case "SF": awayStr = "49ers"; break;
+            case "TB": awayStr = "Buccaneers"; break;
+            case "TEN": awayStr = "Titans"; break;
+            case "WAS": awayStr = "Football Team"; break;
+        }
+
+
+        if (game.GamePick == game.HomeTeam)
+        { homePicked = true; }
+        else if (game.GamePick == game.AwayTeam)
+        { awayPicked = true; }
+
+
+        if (game.HasStarted)
+        {
+            <div class="row">
+                <div class="gameTime">
+                    <p> @game.GameTime.ToString("dddd, MM/dd h:mmtt")  - LOCKED</p>
+                </div>
+
+                <div class="GameHasStarted">
+                    <div class="awayteamInfo">
+                        <label for="@game.AwayTeam">
+                            <img src="@Url.Content("~/images/team_logo/" + game.AwayTeam + ".png")" alt="team_logo" class="teamLogo" />
+                        </label>
+                        @Html.RadioButton("game" + indexGame.ToString(), game.AwayTeam, awayPicked, new { @id = game.AwayTeam, disabled = "disabled" })
+
+                        <p class="teamTxt"> @awayStr </p>
+                    </div>
+
+                    <div class="atSym"> AT </div>
+
+                    <div class="homeTeamInfo">
+                        <label for="@game.HomeTeam">
+                            <img src="@Url.Content("~/images/team_logo/" + game.HomeTeam + ".png")" alt="team_logo" class="teamLogo" />
+                            @Html.RadioButton("game" + indexGame.ToString(), game.HomeTeam, homePicked, new { @id = game.HomeTeam, disabled = "disabled" })
+                        </label>
+
+                        <p class="teamTxt"> @homeStr </p>
+                    </div>
+
+                    <div class="gameInfo">
+                        <p> Venue    :  @game.Venue </p>
+                        <p> Channel  :  @game.Channel </p>
+                        <p> Spread   :  @game.PointSpread @game.HomeTeam </p>
+                        <p> O/U      :  @game.OverUnder </p>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        }
+        else
+        {
+            <div class="row">
+                <div class="gameTime">
+                    <p> @game.GameTime.ToString("dddd, MM/dd h:mmtt") </p>
+                </div>
+
+                <div class="awayteamInfo">
+                    <label for="@game.AwayTeam">
+                        <img src="@Url.Content("~/images/team_logo/" + game.AwayTeam + ".png")" alt="team_logo" class="teamLogo" />
+                    </label>
+                    @Html.RadioButton("game" + indexGame.ToString(), game.AwayTeam, awayPicked, new { @id = game.AwayTeam})
+
+                    <p class="teamTxt"> @awayStr </p>
+                </div>
+
+                <div class="atSym"> AT </div>
+
+                <div class="homeTeamInfo">
+                    <label for="@game.HomeTeam">
+                        <img src="@Url.Content("~/images/team_logo/" + game.HomeTeam + ".png")" alt="team_logo" class="teamLogo" />
+                        @Html.RadioButton("game" + indexGame.ToString(), game.HomeTeam, homePicked, new { @id = game.HomeTeam})
+                    </label>
+
+                    <p class="teamTxt"> @homeStr </p>
+                </div>
+
+                <div class="gameInfo">
+                    <p> Venue    :  @game.Venue </p>
+                    <p> Channel  :  @game.Channel </p>
+                    <p> Spread   :  @game.PointSpread @game.HomeTeam </p>
+                    <p> O/U      :  @game.OverUnder </p>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        }
+
+
+        indexGame++;
+    }
+
+
+
+    <input type="submit" value="Update Picks" class="btnSubmit" />
+}
